@@ -31,21 +31,6 @@ model NameComponent {
   updatedAt DateTime @updatedAt
 }
 
-// model Genre {
-//   id          String   @id @default(uuid())
-//   name        String   @unique
-//   parentId    String?
-//   weight      Float    @default(1.0)
-
-//   // Relationships
-//   components  NameComponent[] @relation("GenreToComponent")
-
-//   // Metadata
-//   createdAt   DateTime @default(now())
-//   updatedAt   DateTime @updatedAt
-
-//   @@index([parentId])
-// }
 
 model Gender {
   id          String   @id @default(uuid())

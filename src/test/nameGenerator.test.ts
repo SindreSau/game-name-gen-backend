@@ -127,3 +127,65 @@ test('generateName also returns components that were used', async () => {
   expect(components).toBeTruthy()
   expect(components.length).toBe(2)
 })
+
+// TESTS FOR THE generateSimilarNames METHOD
+test('generateSimilarNames works as expected', async () => {
+  const nameGenerator = new NameGenerator(db)
+
+  const generatedName = await nameGenerator.generateName({
+    styles: ['heroic', 'celestial', 'arcane'],
+    numParts: 2,
+    unique: true,
+  })
+
+  const similarNames = await nameGenerator.generateSimilarNames(generatedName)
+
+  console.log(chalk.bgGreenBright(generatedName.name))
+  for (const similarName of similarNames) {
+    console.log(chalk.bgYellowBright(similarName.name))
+  }
+
+  expect(similarNames).toBeTruthy()
+})
+
+test('generateSimilarNames works as expected with 3 numParts', async () => {
+  const nameGenerator = new NameGenerator(db)
+
+  const generatedName = await nameGenerator.generateName({
+    styles: ['heroic', 'military', 'cyber'],
+    numParts: 3,
+    unique: false,
+    caseStyle: 'camelCase',
+  })
+
+  const similarNames = await nameGenerator.generateSimilarNames(generatedName)
+
+  console.log(chalk.bgGreenBright(generatedName.name))
+  for (const similarName of similarNames) {
+    console.log(chalk.bgYellowBright(similarName.name))
+  }
+
+  expect(similarNames).toBeTruthy()
+})
+
+// Test that many names being generated also work with feminine and masculine names
+test('generateSimilarNames works as expected with 3 numParts', async () => {
+  const nameGenerator = new NameGenerator(db)
+
+  const generatedName = await nameGenerator.generateName({
+    styles: ['heroic', 'military', 'cyber'],
+    numParts: 3,
+    unique: false,
+    caseStyle: 'kebab-case',
+    gender: 'feminine',
+  })
+
+  const similarNames = await nameGenerator.generateSimilarNames(generatedName)
+
+  console.log(chalk.bgGreenBright(generatedName.name))
+  for (const similarName of similarNames) {
+    console.log(chalk.bgYellowBright(similarName.name))
+  }
+
+  expect(similarNames).toBeTruthy()
+})
