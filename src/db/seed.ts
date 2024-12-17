@@ -1,102 +1,85 @@
+/* eslint-disable no-console */
 import { PrismaClient } from '@prisma/client'
+import { genders } from './seed/genders'
+import { nameComponents } from './seed/nameComponents'
+import { styles } from './seed/styles'
 
 const prisma = new PrismaClient()
 
+async function seedStyles() {
+  console.log('Seeding styles...')
+  return Promise.all(
+    styles.map(style =>
+      prisma.style.upsert({
+        where: { style: style.style },
+        update: {},
+        create: { style: style.style },
+      }),
+    ),
+  )
+}
+
+async function seedGenders() {
+  console.log('Seeding genders...')
+  return Promise.all(
+    genders.map(gender =>
+      prisma.gender.upsert({
+        where: { gender: gender.gender },
+        update: {},
+        create: { gender: gender.gender },
+      }),
+    ),
+  )
+}
+
+async function seedComponents(
+  seededGenders: Awaited<ReturnType<typeof seedGenders>>,
+  seededStyles: Awaited<ReturnType<typeof seedStyles>>,
+) {
+  console.log('Seeding components...')
+
+  // Create maps for looking up IDs
+  const genderMap = new Map(seededGenders.map(g => [g.gender, g]))
+  const styleMap = new Map(seededStyles.map(s => [s.style, s]))
+
+  return Promise.all(
+    nameComponents.map(comp =>
+      prisma.nameComponent.upsert({
+        where: { component: comp.component },
+        update: {
+          genders: {
+            set: comp.gender.map(g => ({ id: genderMap.get(g)?.id })),
+          },
+          styles: {
+            set: comp.style.map(s => ({ id: styleMap.get(s)?.id })),
+          },
+        },
+        create: {
+          component: comp.component,
+          genders: {
+            connect: comp.gender.map(g => ({ id: genderMap.get(g)?.id })),
+          },
+          styles: {
+            connect: comp.style.map(s => ({ id: styleMap.get(s)?.id })),
+          },
+        },
+      }),
+    ),
+  )
+}
+
 async function main() {
-  // Create base genders
-  const genders = await Promise.all([
-    prisma.genderAssociation.create({ data: { gender: 'masculine' } }),
-    prisma.genderAssociation.create({ data: { gender: 'feminine' } }),
-    prisma.genderAssociation.create({ data: { gender: 'neutral' } }),
-  ])
+  try {
+    const seededStyles = await seedStyles()
+    const seededGenders = await seedGenders()
+    await seedComponents(seededGenders, seededStyles)
 
-  // Create base styles
-  const styles = await Promise.all([
-    prisma.style.create({ data: { style: 'heroic' } }),
-    prisma.style.create({ data: { style: 'mystical' } }),
-    prisma.style.create({ data: { style: 'dark' } }),
-    prisma.style.create({ data: { style: 'noble' } }),
-    prisma.style.create({ data: { style: 'nature' } }),
-  ])
-
-  // Create base genres
-  const baseGenres = await Promise.all([
-    prisma.genre.create({
-      data: {
-        name: 'fantasy',
-        description: 'Fantasy-themed names',
-        weight: 1.0,
-      },
-    }),
-    prisma.genre.create({
-      data: {
-        name: 'sci-fi',
-        description: 'Science fiction themed names',
-        weight: 1.0,
-      },
-    }),
-    prisma.genre.create({
-      data: {
-        name: 'medieval',
-        description: 'Medieval-themed names',
-        weight: 1.0,
-      },
-    }),
-    prisma.genre.create({
-      data: {
-        name: 'mythological',
-        description: 'Names from various mythologies',
-        weight: 1.0,
-      },
-    }),
-    prisma.genre.create({
-      data: {
-        name: 'modern',
-        description: 'Modern-style names',
-        weight: 1.0,
-      },
-    }),
-  ])
-
-  // Create some initial name components
-  const components = [
-    // Fantasy components
-    { component: 'star', styleId: styles[1].id, genderId: genders[2].id, genreIds: [baseGenres[0].id, baseGenres[1].id] },
-    { component: 'shadow', styleId: styles[2].id, genderId: genders[2].id, genreIds: [baseGenres[0].id] },
-    { component: 'storm', styleId: styles[0].id, genderId: genders[2].id, genreIds: [baseGenres[0].id] },
-
-    // Sci-fi components
-    { component: 'nova', styleId: styles[1].id, genderId: genders[1].id, genreIds: [baseGenres[1].id] },
-    { component: 'zero', styleId: styles[2].id, genderId: genders[2].id, genreIds: [baseGenres[1].id] },
-    { component: 'tech', styleId: styles[0].id, genderId: genders[2].id, genreIds: [baseGenres[1].id] },
-
-    // Medieval components
-    { component: 'knight', styleId: styles[0].id, genderId: genders[0].id, genreIds: [baseGenres[2].id] },
-    { component: 'crown', styleId: styles[3].id, genderId: genders[2].id, genreIds: [baseGenres[2].id] },
-    { component: 'blade', styleId: styles[0].id, genderId: genders[2].id, genreIds: [baseGenres[2].id] },
-
-    // Add more components here...
-  ]
-
-  for (const comp of components) {
-    await prisma.nameComponent.create({
-      data: {
-        component: comp.component,
-        genderAssociation: {
-          connect: { id: comp.genderId },
-        },
-        styleAssociation: {
-          connect: { id: comp.styleId },
-        },
-        genres: {
-          connect: comp.genreIds.map(id => ({ id })),
-        },
-      },
-    })
+    console.log('✅ Seed completed successfully')
   }
-
-  // eslint-disable-next-line no-console
-  console.log('Seeded database with base data')
+  catch (error) {
+    console.error('❌ Error seeding database:', error)
+    throw error
+  }
 }
 
 main()
