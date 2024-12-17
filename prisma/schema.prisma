@@ -1,0 +1,64 @@
+// This is your Prisma schema file for the Name Generator service
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generator zod {
+//   provider                 = "prisma-zod-generator"
+//   output                   = "../src/db/zodSchemas"
+//   relationModel            = true
+//   modelCase               = "camelCase"
+//   modelSuffix             = "Model"
+// }
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model NameComponent {
+  id                String   @id @default(uuid())
+  component         String   @unique
+
+  // Relationships
+  // genres Genre[] @relation("GenreToComponent")
+  styles Style[] @relation("StyleToComponent")
+  genders Gender[] @relation("GenderToComponent")
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// model Genre {
+//   id          String   @id @default(uuid())
+//   name        String   @unique
+//   parentId    String?
+//   weight      Float    @default(1.0)
+
+//   // Relationships
+//   components  NameComponent[] @relation("GenreToComponent")
+
+//   // Metadata
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+
+//   @@index([parentId])
+// }
+
+model Gender {
+  id          String   @id @default(uuid())
+  gender      String   @unique
+
+  // Relationships
+  components  NameComponent[] @relation("GenderToComponent")
+}
+
+model Style {
+  id          String   @id @default(uuid())
+  style        String   @unique
+  
+  // Relationships
+  components  NameComponent[] @relation("StyleToComponent")
+}
