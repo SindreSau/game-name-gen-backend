@@ -1,5 +1,4 @@
 import type { GenderEnum } from './genders'
-import type { GenreEnum } from './genres'
 import type { StyleEnum } from './styles'
 
 interface NameComponentSeed {
@@ -562,5 +561,305 @@ export const nameComponents: NameComponentSeed[] = [
     style: ['ancient', 'fierce', 'legendary'],
     gender: ['neutral'],
   },
-
+  // New instances
+  {
+    component: 'phantom',
+    style: ['dark', 'ethereal', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'golem',
+    style: ['ancient', 'mighty', 'elemental'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'zephyr',
+    style: ['nature', 'swift', 'ethereal'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'ember',
+    style: ['elemental', 'fierce', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'onyx',
+    style: ['dark', 'mystical', 'ancient'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'seraph',
+    style: ['divine', 'celestial', 'mighty'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'vortex',
+    style: ['cosmic', 'mystical', 'elemental'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'echo',
+    style: ['ethereal', 'mystical', 'subtle'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'ember',
+    style: ['elemental', 'fierce', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'rune',
+    style: ['ancient', 'mystical', 'arcane'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'tempest',
+    style: ['nature', 'elemental', 'fierce', 'mighty', 'swift'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'prism',
+    style: ['mystical', 'ethereal', 'nature', 'celestial'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'archive',
+    style: ['tech', 'ancient', 'wise', 'cyber'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'valkyrie',
+    style: ['nordic', 'divine', 'heroic', 'fierce', 'legendary'],
+    gender: ['feminine'],
+  },
+  {
+    component: 'cosmos',
+    style: ['cosmic', 'celestial', 'ethereal', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'sage',
+    style: ['wise', 'ancient', 'mystical', 'arcane'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'basilisk',
+    style: ['ancient', 'fierce', 'mystical', 'legendary'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'djinn',
+    style: ['desert', 'mystical', 'ancient', 'ethereal'],
+    gender: ['masculine', 'neutral'],
+  },
+  {
+    component: 'glacier',
+    style: ['nature', 'elemental', 'mighty', 'ancient'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'sylvan',
+    style: ['nature', 'fey', 'mystical', 'ethereal'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'forge',
+    style: ['tech', 'elemental', 'mighty', 'synthetic'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'chimera',
+    style: ['ancient', 'fierce', 'legendary', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'cascade',
+    style: ['nature', 'swift', 'elemental', 'ethereal'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'pantheon',
+    style: ['divine', 'ancient', 'legendary', 'noble'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'vertex',
+    style: ['tech', 'cyber', 'quantum', 'synthetic'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'mirage',
+    style: ['desert', 'mystical', 'ethereal', 'subtle'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'druid',
+    style: ['nature', 'wise', 'celtic', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'typhoon',
+    style: ['nature', 'elemental', 'fierce', 'mighty'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'oracle',
+    style: ['divine', 'wise', 'mystical', 'ancient'],
+    gender: ['feminine', 'neutral'],
+  },
+  {
+    component: 'samurai',
+    style: ['oriental', 'military', 'noble', 'heroic'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'avalon',
+    style: ['legendary', 'mystical', 'ethereal', 'celtic'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'chronos',
+    style: ['ancient', 'divine', 'mighty', 'legendary'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'labyrinth',
+    style: ['ancient', 'mystical', 'eldritch', 'subtle'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'shogun',
+    style: ['oriental', 'military', 'noble', 'legendary'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'tsunami',
+    style: ['oriental', 'nature', 'elemental', 'fierce'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'atlas',
+    style: ['ancient', 'mighty', 'legendary', 'wise'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'aurora',
+    style: ['celestial', 'ethereal', 'mystical', 'nature'],
+    gender: ['feminine', 'neutral'],
+  },
+  {
+    component: 'conduit',
+    style: ['tech', 'cyber', 'synthetic', 'quantum'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'templar',
+    style: ['divine', 'military', 'heroic', 'noble'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'siren',
+    style: ['mystical', 'nature', 'fierce', 'legendary'],
+    gender: ['feminine'],
+  },
+  {
+    component: 'forge',
+    style: ['tech', 'elemental', 'mighty', 'synthetic'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'nimbus',
+    style: ['celestial', 'ethereal', 'nature', 'swift'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'pharaoh',
+    style: ['desert', 'royal', 'ancient', 'divine'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'banshee',
+    style: ['celtic', 'dark', 'mystical', 'fierce'],
+    gender: ['feminine'],
+  },
+  {
+    component: 'nexus',
+    style: ['tech', 'cyber', 'quantum', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'shaman',
+    style: ['tribal', 'mystical', 'wise', 'nature'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'calypso',
+    style: ['tropical', 'mystical', 'nature', 'legendary'],
+    gender: ['feminine'],
+  },
+  {
+    component: 'infinity',
+    style: ['cosmic', 'quantum', 'mystical', 'ethereal'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'kraken',
+    style: ['nordic', 'fierce', 'legendary', 'nature'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'meridian',
+    style: ['celestial', 'tech', 'quantum', 'subtle'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'enigma',
+    style: ['mystical', 'subtle', 'eldritch', 'cyber'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'scribe',
+    style: ['ancient', 'wise', 'mystical', 'subtle'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'titan',
+    style: ['ancient', 'mighty', 'legendary', 'divine'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'mystic',
+    style: ['mystical', 'arcane', 'wise', 'ethereal'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'paladin',
+    style: ['heroic', 'divine', 'military', 'noble'],
+    gender: ['masculine'],
+  },
+  {
+    component: 'geyser',
+    style: ['nature', 'elemental', 'fierce', 'mighty'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'panthera',
+    style: ['nature', 'fierce', 'swift', 'tribal'],
+    gender: ['feminine', 'neutral'],
+  },
+  {
+    component: 'kodex',
+    style: ['tech', 'cyber', 'ancient', 'mystical'],
+    gender: ['neutral'],
+  },
+  {
+    component: 'vesper',
+    style: ['celestial', 'dark', 'subtle', 'mystical'],
+    gender: ['feminine', 'neutral'],
+  },
+  {
+    component: 'ronin',
+    style: ['oriental', 'military', 'heroic', 'swift'],
+    gender: ['masculine', 'neutral'],
+  },
 ] as const
